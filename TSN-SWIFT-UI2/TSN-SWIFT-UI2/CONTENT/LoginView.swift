@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 
-struct LoginUserView: View {
+struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var showingLoginScreen = false
@@ -99,7 +99,7 @@ struct LoginUserView: View {
 
     }
 }
-struct LoginUserView_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         CreateUserView()
     }
