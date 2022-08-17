@@ -12,7 +12,10 @@ import Foundation
 struct LoginUserView: View {
     @State private var email = ""
     @State private var password = ""
-    
+    @State private var showingLoginScreen = false
+    @State private var showingAlert = false
+    @State private var wrongEmail = 0
+    @State private var wrongPassword = 0
     
     var body: some View {
         NavigationView {
@@ -38,27 +41,40 @@ struct LoginUserView: View {
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                        
+                        .border(.red, width: CGFloat(wrongEmail))
+                    
+                        .alert("Usuário ou Senha Incorreta", isPresented: $showingAlert) {
+                            Button("OK", role: .cancel) { wrongEmail = 0; wrongPassword = 0;}
+                                }
                     
                     SecureField("Password", text: $password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
+                        .border(.red, width: CGFloat(wrongPassword))
                     
                     Button("Login") {
                         Task {
-                            await API.login(email: self.email, password: self.password)
+                            if ((await API.login(email: self.email, password: self.password)) != nil) {
+                                showingLoginScreen = true
+                            } else {
+                                print ("[DEBUG] SENHA INCORRETA")
+                                wrongPassword = 2
+                                wrongEmail = 2
+                                showingAlert = true
+                            }
+                    
                         }
                     }
-                    NavigationLink(destination: Text("You are logged in@\(self.email)"), isActive: $showingLoginScreen) {
-                        EmptyView()
-                    }
+                    
                         
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
                     .background(Color.red)
                     .cornerRadius(10)
+                    
+                    NavigationLink(destination: Text("You are logged in@\(self.email)"), isActive: $showingLoginScreen) { EmptyView() }
                     
                     .navigationBarHidden(true)
 
