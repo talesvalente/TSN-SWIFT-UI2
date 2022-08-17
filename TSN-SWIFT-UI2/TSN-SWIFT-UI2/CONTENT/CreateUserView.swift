@@ -63,13 +63,23 @@ struct CreateUserView: View {
                     .frame(width: 300, height: 50)
                     .background(Color.red)
                     .cornerRadius(10)
-                    
                     .navigationBarHidden(true)
 
+                    HStack {
+                        Text("Do you have a account?")
+                        NavigationLink( "Sign In", destination: LoginUserView())
+                        
+                    }
+                    .navigationBarHidden(true)
                 }
+                .navigationBarHidden(true)
             }
+            .navigationBarHidden(true)
         }
+        .navigationBarHidden(true)
+
     }
+
 }
 struct CreateUserView_Previews: PreviewProvider {
     static var previews: some View {

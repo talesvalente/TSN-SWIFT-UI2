@@ -67,20 +67,36 @@ struct LoginUserView: View {
                     
                         }
                     }
-                    
-                        
+          
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
                     .background(Color.red)
                     .cornerRadius(10)
+                    
+                    .navigationBarHidden(true)
+
+                    
+                    HStack {
+                        Text("Don't have an account yet?")
+                        NavigationLink( "Sign Up", destination: CreateUserView())
+                        
+                         
+                    }
+
                     
                     NavigationLink(destination: Text("You are logged in@\(self.email)"), isActive: $showingLoginScreen) { EmptyView() }
                     
                     .navigationBarHidden(true)
 
                 }
+                .navigationBarHidden(true)
+
             }
+            .navigationBarHidden(true)
+
         }
+        .navigationBarHidden(true)
+
     }
 }
 struct LoginUserView_Previews: PreviewProvider {
