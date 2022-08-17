@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		85511CBA28ABDADD00FA2E0B /* TSN_SWIFT_UI2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85511CB928ABDADD00FA2E0B /* TSN_SWIFT_UI2App.swift */; };
-		85511CBC28ABDADD00FA2E0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85511CBB28ABDADD00FA2E0B /* ContentView.swift */; };
+		85511CBC28ABDADD00FA2E0B /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85511CBB28ABDADD00FA2E0B /* CreateUserView.swift */; };
 		85511CBE28ABDADD00FA2E0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85511CBD28ABDADD00FA2E0B /* Assets.xcassets */; };
 		85511CC128ABDADD00FA2E0B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85511CC028ABDADD00FA2E0B /* Preview Assets.xcassets */; };
 		85511CCB28ABDADD00FA2E0B /* TSN_SWIFT_UI2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85511CCA28ABDADD00FA2E0B /* TSN_SWIFT_UI2Tests.swift */; };
 		85511CD528ABDADD00FA2E0B /* TSN_SWIFT_UI2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85511CD428ABDADD00FA2E0B /* TSN_SWIFT_UI2UITests.swift */; };
 		85511CD728ABDADD00FA2E0B /* TSN_SWIFT_UI2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85511CD628ABDADD00FA2E0B /* TSN_SWIFT_UI2UITestsLaunchTests.swift */; };
+		85CD452828AD104A003DD747 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD452728AD104A003DD747 /* ContentView.swift */; };
+		85CD452A28AD10A2003DD747 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD452928AD10A2003DD747 /* API.swift */; };
+		85CD452C28AD110D003DD747 /* GetUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD452B28AD110D003DD747 /* GetUserModel.swift */; };
+		85CD452E28AD1121003DD747 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD452D28AD1121003DD747 /* PostModel.swift */; };
+		85CD453028AD112F003DD747 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD452F28AD112F003DD747 /* UserModel.swift */; };
+		85CD453328AD1145003DD747 /* UserSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453228AD1145003DD747 /* UserSessionModel.swift */; };
+		85CD453828AD1BEB003DD747 /* LoginUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453728AD1BEB003DD747 /* LoginUserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,7 @@
 /* Begin PBXFileReference section */
 		85511CB628ABDADD00FA2E0B /* TSN-SWIFT-UI2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TSN-SWIFT-UI2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85511CB928ABDADD00FA2E0B /* TSN_SWIFT_UI2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSN_SWIFT_UI2App.swift; sourceTree = "<group>"; };
-		85511CBB28ABDADD00FA2E0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		85511CBB28ABDADD00FA2E0B /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
 		85511CBD28ABDADD00FA2E0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85511CC028ABDADD00FA2E0B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		85511CC628ABDADD00FA2E0B /* TSN-SWIFT-UI2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TSN-SWIFT-UI2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +51,13 @@
 		85511CD028ABDADD00FA2E0B /* TSN-SWIFT-UI2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TSN-SWIFT-UI2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85511CD428ABDADD00FA2E0B /* TSN_SWIFT_UI2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSN_SWIFT_UI2UITests.swift; sourceTree = "<group>"; };
 		85511CD628ABDADD00FA2E0B /* TSN_SWIFT_UI2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSN_SWIFT_UI2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		85CD452728AD104A003DD747 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		85CD452928AD10A2003DD747 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		85CD452B28AD110D003DD747 /* GetUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserModel.swift; sourceTree = "<group>"; };
+		85CD452D28AD1121003DD747 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		85CD452F28AD112F003DD747 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		85CD453228AD1145003DD747 /* UserSessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionModel.swift; sourceTree = "<group>"; };
+		85CD453728AD1BEB003DD747 /* LoginUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				85511CB828ABDADD00FA2E0B /* TSN-SWIFT-UI2 */,
-				85511CC928ABDADD00FA2E0B /* TSN-SWIFT-UI2Tests */,
+				85511CBD28ABDADD00FA2E0B /* Assets.xcassets */,
+				85511CB928ABDADD00FA2E0B /* TSN_SWIFT_UI2App.swift */,
 				85511CD328ABDADD00FA2E0B /* TSN-SWIFT-UI2UITests */,
 				85511CB728ABDADD00FA2E0B /* Products */,
 			);
@@ -94,9 +109,10 @@
 		85511CB828ABDADD00FA2E0B /* TSN-SWIFT-UI2 */ = {
 			isa = PBXGroup;
 			children = (
-				85511CB928ABDADD00FA2E0B /* TSN_SWIFT_UI2App.swift */,
-				85511CBB28ABDADD00FA2E0B /* ContentView.swift */,
-				85511CBD28ABDADD00FA2E0B /* Assets.xcassets */,
+				85CD453628AD11D0003DD747 /* CONTENT */,
+				85CD453528AD119A003DD747 /* MODELS */,
+				85CD453428AD1188003DD747 /* SERVICE */,
+				85511CC928ABDADD00FA2E0B /* TSN-SWIFT-UI2Tests */,
 				85511CBF28ABDADD00FA2E0B /* Preview Content */,
 			);
 			path = "TSN-SWIFT-UI2";
@@ -125,6 +141,35 @@
 				85511CD628ABDADD00FA2E0B /* TSN_SWIFT_UI2UITestsLaunchTests.swift */,
 			);
 			path = "TSN-SWIFT-UI2UITests";
+			sourceTree = "<group>";
+		};
+		85CD453428AD1188003DD747 /* SERVICE */ = {
+			isa = PBXGroup;
+			children = (
+				85CD452928AD10A2003DD747 /* API.swift */,
+			);
+			path = SERVICE;
+			sourceTree = "<group>";
+		};
+		85CD453528AD119A003DD747 /* MODELS */ = {
+			isa = PBXGroup;
+			children = (
+				85CD452B28AD110D003DD747 /* GetUserModel.swift */,
+				85CD452F28AD112F003DD747 /* UserModel.swift */,
+				85CD452D28AD1121003DD747 /* PostModel.swift */,
+				85CD453228AD1145003DD747 /* UserSessionModel.swift */,
+			);
+			path = MODELS;
+			sourceTree = "<group>";
+		};
+		85CD453628AD11D0003DD747 /* CONTENT */ = {
+			isa = PBXGroup;
+			children = (
+				85CD452728AD104A003DD747 /* ContentView.swift */,
+				85511CBB28ABDADD00FA2E0B /* CreateUserView.swift */,
+				85CD453728AD1BEB003DD747 /* LoginUserView.swift */,
+			);
+			path = CONTENT;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +302,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85511CBC28ABDADD00FA2E0B /* ContentView.swift in Sources */,
+				85511CBC28ABDADD00FA2E0B /* CreateUserView.swift in Sources */,
+				85CD453028AD112F003DD747 /* UserModel.swift in Sources */,
+				85CD452E28AD1121003DD747 /* PostModel.swift in Sources */,
 				85511CBA28ABDADD00FA2E0B /* TSN_SWIFT_UI2App.swift in Sources */,
+				85CD453828AD1BEB003DD747 /* LoginUserView.swift in Sources */,
+				85CD452A28AD10A2003DD747 /* API.swift in Sources */,
+				85CD453328AD1145003DD747 /* UserSessionModel.swift in Sources */,
+				85CD452C28AD110D003DD747 /* GetUserModel.swift in Sources */,
+				85CD452828AD104A003DD747 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
