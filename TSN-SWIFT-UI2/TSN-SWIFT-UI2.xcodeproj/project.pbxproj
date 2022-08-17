@@ -21,6 +21,8 @@
 		85CD453028AD112F003DD747 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD452F28AD112F003DD747 /* UserModel.swift */; };
 		85CD453328AD1145003DD747 /* UserSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453228AD1145003DD747 /* UserSessionModel.swift */; };
 		85CD453828AD1BEB003DD747 /* LoginUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453728AD1BEB003DD747 /* LoginUserView.swift */; };
+		85CD453A28AD3251003DD747 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453928AD3251003DD747 /* PostView.swift */; };
+		85CD453D28AD33D2003DD747 /* KEYCHAIN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453C28AD33D2003DD747 /* KEYCHAIN.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		85CD452F28AD112F003DD747 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		85CD453228AD1145003DD747 /* UserSessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionModel.swift; sourceTree = "<group>"; };
 		85CD453728AD1BEB003DD747 /* LoginUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserView.swift; sourceTree = "<group>"; };
+		85CD453928AD3251003DD747 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		85CD453C28AD33D2003DD747 /* KEYCHAIN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEYCHAIN.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 				85511CBD28ABDADD00FA2E0B /* Assets.xcassets */,
 				85511CB928ABDADD00FA2E0B /* TSN_SWIFT_UI2App.swift */,
 				85511CD328ABDADD00FA2E0B /* TSN-SWIFT-UI2UITests */,
+				85CD453B28AD326B003DD747 /* SOURCE */,
 				85511CB728ABDADD00FA2E0B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				85CD452928AD10A2003DD747 /* API.swift */,
+				85CD453C28AD33D2003DD747 /* KEYCHAIN.swift */,
 			);
 			path = SERVICE;
 			sourceTree = "<group>";
@@ -165,11 +171,19 @@
 		85CD453628AD11D0003DD747 /* CONTENT */ = {
 			isa = PBXGroup;
 			children = (
-				85CD452728AD104A003DD747 /* ContentView.swift */,
 				85511CBB28ABDADD00FA2E0B /* CreateUserView.swift */,
 				85CD453728AD1BEB003DD747 /* LoginUserView.swift */,
+				85CD453928AD3251003DD747 /* PostView.swift */,
 			);
 			path = CONTENT;
+			sourceTree = "<group>";
+		};
+		85CD453B28AD326B003DD747 /* SOURCE */ = {
+			isa = PBXGroup;
+			children = (
+				85CD452728AD104A003DD747 /* ContentView.swift */,
+			);
+			path = SOURCE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,7 +323,9 @@
 				85CD453828AD1BEB003DD747 /* LoginUserView.swift in Sources */,
 				85CD452A28AD10A2003DD747 /* API.swift in Sources */,
 				85CD453328AD1145003DD747 /* UserSessionModel.swift in Sources */,
+				85CD453D28AD33D2003DD747 /* KEYCHAIN.swift in Sources */,
 				85CD452C28AD110D003DD747 /* GetUserModel.swift in Sources */,
+				85CD453A28AD3251003DD747 /* PostView.swift in Sources */,
 				85CD452828AD104A003DD747 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
