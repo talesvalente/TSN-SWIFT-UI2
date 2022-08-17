@@ -83,8 +83,8 @@ struct LoginView: View {
                          
                     }
 
-                    
-                    NavigationLink(destination: Text("You are logged in@\(self.email)"), isActive: $showingLoginScreen) { EmptyView() }
+                    //CORRIGIR ESTA BOSTA
+                    NavigationLink(destination: PostView(), isActive: $showingLoginScreen) { EmptyView() }
                     
                     .navigationBarHidden(true)
 

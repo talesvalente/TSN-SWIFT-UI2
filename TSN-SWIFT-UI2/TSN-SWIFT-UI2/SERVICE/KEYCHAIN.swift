@@ -10,7 +10,7 @@ import Foundation
 func getPassword(){
         guard let data = KeychainManager.get(
             service: "Apple.Developer.Academy.TSN-SWIFT-UI2",
-            account: "papai") else {
+            account: "academy") else {
             print("sdfasdgds")
             return
         }
@@ -20,12 +20,12 @@ func getPassword(){
        
 }
 
-func save(){
+func save(token : String){
     do {
         try KeychainManager.save(
             service: "Apple.Developer.Academy.TSN-SWIFT-UI2",
-            account: "affraz",
-            token: "something".data(using: .utf8) ?? Data() )
+            account: "academy",
+            token: token.data(using: .utf8) ?? Data() )
     }
     catch {
         print (error)

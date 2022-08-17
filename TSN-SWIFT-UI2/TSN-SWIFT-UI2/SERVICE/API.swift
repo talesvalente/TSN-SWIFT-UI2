@@ -75,7 +75,7 @@ class API{
             let stringResponse = String(data: data, encoding: .utf8)!
             print(stringResponse)
             
-            //print(session.token)
+            save( token: session.token)
             return session
         }
         catch{
