@@ -12,10 +12,11 @@ import Foundation
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
-    @State private var showingLoginScreen = false
     @State private var showingAlert = false
     @State private var wrongEmail = 0
     @State private var wrongPassword = 0
+    
+    @Binding var isNotConnected: Bool
     
     var body: some View {
         NavigationView {
@@ -57,7 +58,7 @@ struct LoginView: View {
                     Button("Login") {
                         Task {
                             if ((await API.default.login(email: self.email, password: self.password)) != nil) {
-                                showingLoginScreen = true
+                                isNotConnected = false
                                 //save(token: API.default.session.token)
                             } else {
                                 print ("[DEBUG] SENHA INCORRETA")
@@ -83,10 +84,6 @@ struct LoginView: View {
                         
                          
                     }
-
-                    //CORRIGIR ESTA BOSTA
-                    NavigationLink("", destination: PostView(), isActive: $showingLoginScreen)
-                    
                     .navigationBarHidden(true)
 
                 }

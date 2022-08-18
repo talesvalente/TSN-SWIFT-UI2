@@ -13,6 +13,8 @@ struct PostView: View {
     
     @State var token: String?
     
+    @Binding var isNotConnected: Bool
+    
     var body: some View {
         
         //VERIFICA SE TEM TOKEN OU NAO
@@ -21,8 +23,12 @@ struct PostView: View {
         Button("Logout") {
             Task {
                 //await (API.default.logout(token: self.token!))
-                await (API.default.logout(token: token!))
-                dismiss()
+                if let token = token {
+                    await (API.default.logout(token: token))
+                    isNotConnected = true
+                    dismiss()
+                }
+                
             }
             dismiss()
         }
@@ -36,6 +42,6 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView()
+        PostView(isNotConnected: .constant(true))
     }
 }

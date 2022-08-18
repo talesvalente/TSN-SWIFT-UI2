@@ -10,17 +10,21 @@ import SwiftUI
 @main
 struct TSN_SWIFT_UI2App: App {
    
-    @State var isNotConnected = true
+    @State var isNotConnected = false
     
     var body: some Scene {
         WindowGroup {
-            PostView()
+            PostView(isNotConnected: $isNotConnected)
                 .fullScreenCover(isPresented: $isNotConnected) {
-                    LoginView()
+                    LoginView(isNotConnected: $isNotConnected)
                 }
                 .onAppear {
-                    if let token = getPassword() {
-                        isNotConnected = false
+                    if getPassword() ==  nil {
+                        var transaction = Transaction()
+                        transaction.disablesAnimations = true
+                        withTransaction(transaction) {
+                            isNotConnected = true
+                        }
                     }
                 }
         }

@@ -81,7 +81,9 @@ struct CreateUserView: View {
 
                     HStack {
                         Text("Do you have a account?")
-                        NavigationLink( "Sign In", destination: LoginView())
+                        Button("Sign In") {
+                            dismiss()
+                        }
                     }
                     
                     .navigationBarHidden(true)
