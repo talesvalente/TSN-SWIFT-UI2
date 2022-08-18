@@ -1,9 +1,35 @@
 import Foundation
 
-class API{
+//DEFINE IF APPLICATION IS RUNNING LOCAL OR CLOUD
+//TODO UPGRADE THIS TO AUTOCHECK IF CLOUD OR LOCAL
+//MAYBE A FUNCTION THAT RETURNS TRUE OR FALSE ?
+
+//FOR LOCAL SERVER
+//let serverPath: String = "http://127.0.0.1:8080/"
+
+//FOR CLOUD SERVER
+//let serverPath: String = "http://adaspace.local/"
+
+class API {
     
-    static func getAllPosts() async -> [Post] {
-        var urlRequest = URLRequest(url: URL(string: "http://adaspace.local/posts")!)
+    static var `default` = API(serverPath: "http://adaspace.local/")
+    
+    var serverPath: String
+    
+    init(serverPath: String) {
+        self.serverPath = serverPath
+    }
+    
+    func checkConection() {
+            var isDirectory = ObjCBool(true)
+            let exists = FileManager.default.fileExists(atPath: "http://adaspace.local/", isDirectory: &isDirectory)
+        if (exists)
+            
+        
+    }
+    
+    func getAllPosts() async -> [Post] {
+        var urlRequest = URLRequest(url: URL(string: serverPath+"posts")!)
         urlRequest.httpMethod = "GET"
         
         do {
@@ -17,8 +43,8 @@ class API{
         return []
     }
     
-    static func getAllUsers() async -> [GetUser] {
-        var urlRequest = URLRequest(url: URL(string: "http://adaspace.local/users")!)
+    func getAllUsers() async -> [GetUser] {
+        var urlRequest = URLRequest(url: URL(string: serverPath+"users")!)
         urlRequest.httpMethod = "GET"
         
         do {
@@ -32,8 +58,8 @@ class API{
         return []
     }
     
-    static func createUser(name: String, email: String,password: String) async -> UserSession?{
-        var urlRequest = URLRequest(url: URL(string: "http://adaspace.local/users")!)
+    func createUser(name: String, email: String,password: String) async -> UserSession?{
+        var urlRequest = URLRequest(url: URL(string: serverPath+"users")!)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -57,13 +83,13 @@ class API{
     }
 
     
-    static func login(email:String, password:String) async -> UserSession? {
+    func login(email:String, password:String) async -> UserSession? {
         
         let login: String = "\(email):\(password)"
         let logindata = login.data(using: String.Encoding.utf8)!
         let base64 = logindata.base64EncodedString()
         
-        var urlRequest = URLRequest(url: URL(string: "http://adaspace.local/users/login")!)
+        var urlRequest = URLRequest(url: URL(string: serverPath+"users/login")!)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("Basic \(base64)", forHTTPHeaderField: "Authorization")
         
@@ -75,7 +101,8 @@ class API{
             let stringResponse = String(data: data, encoding: .utf8)!
             print(stringResponse)
             
-            save( token: session.token)
+            //VERIFICAR ESSE SAVE DO CHRISTIAN
+            save(token: session.token)
             return session
         }
         catch{
@@ -84,8 +111,8 @@ class API{
         return nil
     }
     
-    static func logout(token: String) async -> UserSession?{
-        var urlRequest = URLRequest(url: URL(string: "http://adaspace.local/users/logout")!)
+    func logout(token: String) async -> UserSession?{
+        var urlRequest = URLRequest(url: URL(string: serverPath+"users/logout")!)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         

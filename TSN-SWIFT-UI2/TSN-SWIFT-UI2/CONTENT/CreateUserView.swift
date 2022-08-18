@@ -13,7 +13,11 @@ struct CreateUserView: View {
     @State private var name = ""
     @State private var email = ""
     @State private var password = ""
+    @State private var accountExistsAlert = false
+    @State private var accountCreationSucessful = false
+    @State private var teste = 0
     
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
@@ -39,14 +43,19 @@ struct CreateUserView: View {
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                     
+                        .alert("Usuário já existe no sistema!", isPresented: $accountExistsAlert) {
+                            Button("OK", role: .cancel){}}
+                        .alert("Usuário cadastrado com sucesso!", isPresented: $accountCreationSucessful) {
+                            Button("OK", role: .cancel) { dismiss() }}
+                        
+
+                        
                     TextField("Email", text: $email)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                         
-                    
                     SecureField("Password", text: $password)
                         .padding()
                         .frame(width: 300, height: 50)
@@ -55,7 +64,12 @@ struct CreateUserView: View {
                     
                     Button("Create User") {
                         Task {
-                            await API.createUser(name: self.name, email: self.email, password: self.password)
+                            if ((await API.default.createUser(name: self.name, email: self.email, password: self.password)) == nil) {
+                                accountExistsAlert = true
+                            }
+                            else {
+                                accountCreationSucessful = true
+                            }
                         }
                     }
                         
@@ -68,8 +82,8 @@ struct CreateUserView: View {
                     HStack {
                         Text("Do you have a account?")
                         NavigationLink( "Sign In", destination: LoginView())
-                        
                     }
+                    
                     .navigationBarHidden(true)
                 }
                 .navigationBarHidden(true)

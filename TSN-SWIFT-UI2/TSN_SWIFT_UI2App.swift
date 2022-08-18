@@ -12,6 +12,9 @@ struct TSN_SWIFT_UI2App: App {
     var body: some Scene {
         WindowGroup {
             LoginView()
+                .onAppear {
+                    API.default.checkConection()
+                }
         }
     }
 }

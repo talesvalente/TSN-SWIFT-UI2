@@ -56,7 +56,7 @@ struct LoginView: View {
                     
                     Button("Login") {
                         Task {
-                            if ((await API.login(email: self.email, password: self.password)) != nil) {
+                            if ((await API.default.login(email: self.email, password: self.password)) != nil) {
                                 showingLoginScreen = true
                             } else {
                                 print ("[DEBUG] SENHA INCORRETA")
