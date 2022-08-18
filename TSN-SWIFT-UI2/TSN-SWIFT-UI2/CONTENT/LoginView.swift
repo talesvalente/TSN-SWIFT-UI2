@@ -58,6 +58,7 @@ struct LoginView: View {
                         Task {
                             if ((await API.default.login(email: self.email, password: self.password)) != nil) {
                                 showingLoginScreen = true
+                                //save(token: API.default.session.token)
                             } else {
                                 print ("[DEBUG] SENHA INCORRETA")
                                 wrongPassword = 2
@@ -84,7 +85,7 @@ struct LoginView: View {
                     }
 
                     //CORRIGIR ESTA BOSTA
-                    NavigationLink(destination: PostView(), isActive: $showingLoginScreen) { EmptyView() }
+                    NavigationLink("", destination: PostView(), isActive: $showingLoginScreen)
                     
                     .navigationBarHidden(true)
 

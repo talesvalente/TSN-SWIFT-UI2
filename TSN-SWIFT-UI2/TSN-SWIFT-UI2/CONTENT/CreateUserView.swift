@@ -46,7 +46,7 @@ struct CreateUserView: View {
                         .alert("Usuário já existe no sistema!", isPresented: $accountExistsAlert) {
                             Button("OK", role: .cancel){}}
                         .alert("Usuário cadastrado com sucesso!", isPresented: $accountCreationSucessful) {
-                            Button("OK", role: .cancel) { dismiss() }}
+                            Button("Fazer Login", role: .cancel) { dismiss() }}
                         
 
                         

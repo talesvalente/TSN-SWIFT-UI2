@@ -9,12 +9,26 @@ import SwiftUI
 
 @main
 struct TSN_SWIFT_UI2App: App {
+   
+    @State var isNotConnected = true
+    
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            PostView()
+                .fullScreenCover(isPresented: $isNotConnected) {
+                    LoginView()
+                }
                 .onAppear {
-                    API.default.checkConection()
+                    if let token = getPassword() {
+                        isNotConnected = false
+                    }
                 }
         }
     }
 }
+
+//JUNK
+//.onAppear {
+//     API.default.checkConection()
+//
+// }

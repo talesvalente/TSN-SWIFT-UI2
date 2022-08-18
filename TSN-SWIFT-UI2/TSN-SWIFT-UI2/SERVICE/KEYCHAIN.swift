@@ -7,16 +7,15 @@
 
 import Foundation
 
-func getPassword(){
+func getPassword() -> String? {
         guard let data = KeychainManager.get(
             service: "Apple.Developer.Academy.TSN-SWIFT-UI2",
             account: "academy") else {
-            print("sdfasdgds")
-            return
+            return nil
         }
     
     let password = String(decoding: data, as: UTF8.self)
-    print(password)
+    return password
        
 }
 
@@ -32,6 +31,17 @@ func save(token : String){
     }
 }
 
+func delete(service: String, account: String) {
+
+    let query = [
+        kSecAttrService: service,
+        kSecAttrAccount: account,
+        kSecClass: kSecClassGenericPassword,
+        ] as CFDictionary
+
+    // Delete item from keychain
+    SecItemDelete(query)
+}
 
 class KeychainManager{
     enum KeychainError: Error {
@@ -75,6 +85,7 @@ class KeychainManager{
         let status = SecItemCopyMatching(query as CFDictionary, &result)
 
         print("Read Status: \(status)")
+        
 
         return result as? Data
     }

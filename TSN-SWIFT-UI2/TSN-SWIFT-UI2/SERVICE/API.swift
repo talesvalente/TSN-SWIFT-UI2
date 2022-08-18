@@ -13,19 +13,12 @@ import Foundation
 class API {
     
     static var `default` = API(serverPath: "http://adaspace.local/")
+    //static var `default` = API(serverPath: "http://127.0.0.1:8080/")
     
     var serverPath: String
     
     init(serverPath: String) {
         self.serverPath = serverPath
-    }
-    
-    func checkConection() {
-            var isDirectory = ObjCBool(true)
-            let exists = FileManager.default.fileExists(atPath: "http://adaspace.local/", isDirectory: &isDirectory)
-        if (exists)
-            
-        
     }
     
     func getAllPosts() async -> [Post] {
@@ -116,16 +109,18 @@ class API {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
+
         do{
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             let session = try JSONDecoder().decode(UserSession.self, from: data)
             let stringResponse = String(data: data, encoding: .utf8)!
             print(stringResponse)
             print("Logout Successful")
+            delete(service: "Apple.Developer.Academy.TSN-SWIFT-UI2", account: "academy")
             return session
         }
         catch{
-            print(error)
+            print("deu merda", error)
         }
         return nil
     }

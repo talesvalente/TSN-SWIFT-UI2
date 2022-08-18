@@ -6,10 +6,31 @@
 //
 
 import SwiftUI
-
+import Foundation
 struct PostView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
+    @State var token: String?
+    
     var body: some View {
-        Text("sdafasdf")
+        
+        //VERIFICA SE TEM TOKEN OU NAO
+        Text(token ?? "[ERROR] TOKEN NOTE FOUND")
+        
+        Button("Logout") {
+            Task {
+                //await (API.default.logout(token: self.token!))
+                await (API.default.logout(token: token!))
+                dismiss()
+            }
+            dismiss()
+        }
+        
+        //CICLO DE VIDA DA VIEW
+        .onAppear {
+            token = getPassword()
+        }
     }
 }
 
