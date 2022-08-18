@@ -124,5 +124,27 @@ class API {
         }
         return nil
     }
-
+    
+    func createPost(content: String, token: String) async -> Post?{
+            var urlRequest = URLRequest(url: URL(string: serverPath+"posts")!)
+            urlRequest.httpMethod = "POST"
+            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = content.data(using: .utf8)!
+            
+            do{
+                let (data, _) = try await URLSession.shared.data(for: urlRequest)
+                
+                let stringResponse = String(data: data, encoding: .utf8)!
+                print(stringResponse)
+                
+                let userdata = try JSONDecoder().decode(Post.self, from: data)
+                
+                return userdata
+            }
+            catch{
+                print(error)
+            }
+            return nil
+    }
 }
