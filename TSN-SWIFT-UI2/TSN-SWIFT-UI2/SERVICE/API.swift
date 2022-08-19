@@ -120,7 +120,7 @@ class API {
             return session
         }
         catch{
-            print("deu merda", error)
+            print("\n[DEBUG] ERROR IN FUNCTION LOGOUT. SOMETHING GOES WRONG!\n", error)
         }
         return nil
     }

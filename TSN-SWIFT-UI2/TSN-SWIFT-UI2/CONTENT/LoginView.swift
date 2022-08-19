@@ -59,7 +59,7 @@ struct LoginView: View {
                         Task {
                             if ((await API.default.login(email: self.email, password: self.password)) != nil) {
                                 isNotConnected = false
-                                //save(token: API.default.session.token)
+                                //save(token: API.default.session.token) VERIFICAR
                             } else {
                                 print ("[DEBUG] SENHA INCORRETA")
                                 wrongPassword = 2

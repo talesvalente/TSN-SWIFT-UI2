@@ -10,12 +10,14 @@ import Foundation
 
 
 struct CreateUserView: View {
+    
+    //Design Patter @State
     @State private var name = ""
     @State private var email = ""
     @State private var password = ""
     @State private var accountExistsAlert = false
     @State private var accountCreationSucessful = false
-    @State private var teste = 0
+    //@State private var teste = 0
     
     @Environment(\.dismiss) var dismiss
     
@@ -47,8 +49,6 @@ struct CreateUserView: View {
                             Button("OK", role: .cancel){}}
                         .alert("Usuário cadastrado com sucesso!", isPresented: $accountCreationSucessful) {
                             Button("Fazer Login", role: .cancel) { dismiss() }}
-                        
-
                         
                     TextField("Email", text: $email)
                         .padding()

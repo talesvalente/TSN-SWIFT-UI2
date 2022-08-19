@@ -58,7 +58,7 @@ struct PostView: View {
         
         Button("Logout") {
             Task {
-                //await (API.default.logout(token: self.token!))
+                //await (API.default.logout(token: self.token!)) // TA BUGADO NAO DESLOGA
                 if let token = token {
                     await (API.default.logout(token: token))
                     isNotConnected = true

@@ -178,7 +178,6 @@
 				85511CBB28ABDADD00FA2E0B /* CreateUserView.swift */,
 				85CD453728AD1BEB003DD747 /* LoginView.swift */,
 				85CD453928AD3251003DD747 /* PostView.swift */,
-				85CD453E28AE7EE6003DD747 /* PostViewTemp.swift */,
 				85CD454028AE850D003DD747 /* AddPost.swift */,
 			);
 			path = CONTENT;
@@ -187,6 +186,7 @@
 		85CD453B28AD326B003DD747 /* SOURCE */ = {
 			isa = PBXGroup;
 			children = (
+				85CD453E28AE7EE6003DD747 /* PostViewTemp.swift */,
 				85CD452728AD104A003DD747 /* ContentView.swift */,
 			);
 			path = SOURCE;
