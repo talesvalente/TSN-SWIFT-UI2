@@ -17,8 +17,6 @@ struct PostView: View {
     @State var displayAddPostView = false
     
     
-    @Binding var isNotConnected: Bool
-    
     var body: some View {
         
         //VERIFICA SE TEM TOKEN OU NAO
@@ -29,19 +27,16 @@ struct PostView: View {
             List {
                 ForEach(posts) { post in
                     VStack {
+                        Text(post.content)
+                        Text(post.user_id)
+                        //VERIFICAR IDENFICACAO DE USUARIO
                         
-         
-                            Text(post.content)
-                            .bold()
-                        
+                        .bold()
                     }
-                    
-                    
-                    
                 }
             }
-            .navigationTitle("Listagens Posts")
             
+            .navigationTitle("Listagens Posts")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     navigationBarLink
@@ -51,29 +46,27 @@ struct PostView: View {
                 AddPost(isPresented: $displayAddPostView)
             }
         }
-        
+        .navigationBarHidden(true)
         .task {
             posts = await API.default.getAllPosts()
         }
-        
         Button("Logout") {
             Task {
                 //await (API.default.logout(token: self.token!)) // TA BUGADO NAO DESLOGA
                 if let token = token {
-                    await (API.default.logout(token: token))
-                    isNotConnected = true
+                    await API.default.logout(token: token)
                     dismiss()
                 }
             }
             dismiss()
         }
-        
-        
         //CICLO DE VIDA DA VIEW
         .onAppear {
             token = getPassword()
         }
     }
+    
+    // ADD POST FUCTION ??
     private var navigationBarLink: some View {
             HStack{
                 Button {
@@ -86,12 +79,13 @@ struct PostView: View {
                 Spacer()
             }
     }
+     
 }
 
 
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(isNotConnected: .constant(true))
+        PostView()
     }
 }

@@ -10,23 +10,12 @@ import SwiftUI
 @main
 struct TSN_SWIFT_UI2App: App {
    
-    @State var isNotConnected = false
+    //@State var isNotConnected = false
     
     var body: some Scene {
         WindowGroup {
-            PostView(isNotConnected: $isNotConnected)
-                .fullScreenCover(isPresented: $isNotConnected) {
-                    LoginView(isNotConnected: $isNotConnected)
-                }
-                .onAppear {
-                    if getPassword() ==  nil {
-                        var transaction = Transaction()
-                        transaction.disablesAnimations = true
-                        withTransaction(transaction) {
-                            isNotConnected = true
-                        }
-                    }
-                }
+            LoginView()
+
         }
     }
 }
@@ -36,3 +25,19 @@ struct TSN_SWIFT_UI2App: App {
 //     API.default.checkConection()
 //
 // }
+
+/*
+PostView(isNotConnected: $isNotConnected)
+    .fullScreenCover(isPresented: $isNotConnected) {
+        LoginView(isNotConnected: $isNotConnected)
+    }
+    .onAppear {
+        if getPassword() ==  nil {
+            var transaction = Transaction()
+            transaction.disablesAnimations = true
+            withTransaction(transaction) {
+                isNotConnected = true
+            }
+        }
+    }
+ */
