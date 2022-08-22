@@ -19,67 +19,26 @@ struct PostView: View {
     
     var body: some View {
         
-        //VERIFICA SE TEM TOKEN OU NAO
-        //Text(token ?? "[ERROR] TOKEN NOTE FOUND")]
         Text("Logged as: $USERNAME")
         
-        NavigationView {
-            List {
-                ForEach(posts) { post in
-                    VStack {
-                        Text(post.content)
-                        Text(post.user_id)
-                        //VERIFICAR IDENFICACAO DE USUARIO
-                        
-                        .bold()
-                    }
-                }
-            }
-            
-            .navigationTitle("Listagens Posts")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    navigationBarLink
-                }
-            }
-            .sheet(isPresented: $displayAddPostView){
-                AddPost(isPresented: $displayAddPostView)
-            }
-        }
         .navigationBarHidden(true)
-        .task {
-            posts = await API.default.getAllPosts()
-        }
+
         Button("Logout") {
             Task {
-                //await (API.default.logout(token: self.token!)) // TA BUGADO NAO DESLOGA
-                if let token = token {
-                    await API.default.logout(token: token)
+                if (await API.default.logout(token: self.token!) != nil) {
                     dismiss()
                 }
+                else {
+                    
+                }
             }
-            dismiss()
         }
         //CICLO DE VIDA DA VIEW
         .onAppear {
-            token = getPassword()
+            self.token = getPassword()
         }
     }
-    
-    // ADD POST FUCTION ??
-    private var navigationBarLink: some View {
-            HStack{
-                Button {
-                    displayAddPostView = true
-                } label: {
-                    Image(systemName: "plus")
-                        .labelStyle(.titleAndIcon)
-                        .font(.system(.body, design: .rounded).weight(.medium))
-                }
-                Spacer()
-            }
-    }
-     
+
 }
 
 

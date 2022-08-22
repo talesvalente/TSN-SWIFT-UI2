@@ -20,6 +20,9 @@ func getPassword() -> String? {
 }
 
 func save(token : String){
+    delete(
+        service: "Apple.Developer.Academy.TSN-SWIFT-UI2",
+        account: "academy")
     do {
         try KeychainManager.save(
             service: "Apple.Developer.Academy.TSN-SWIFT-UI2",
@@ -27,7 +30,7 @@ func save(token : String){
             token: token.data(using: .utf8) ?? Data() )
     }
     catch {
-        print (error)
+        print(error)
     }
 }
 
