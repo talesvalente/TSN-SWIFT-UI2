@@ -63,6 +63,7 @@ struct LoginView: View {
                             }
                         }
                     }
+                    
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
                     .background(Color.red)
@@ -74,25 +75,19 @@ struct LoginView: View {
                     //Mostrar um alerta em caso de:
                     //Usuário Incorreto ou Senha Incorreta
                     //TIP: API DOENST SUPPORT UserLogin or UserPass check
-                    .alert("Usuário ou senha incorreta.", isPresented: $showingAlert) {
-                        Button("OK", role: .cancel) { wrongUserPass = 0}
+                    .alert("User or Password incorret.", isPresented: $showingAlert) {
+                        Button("Try Again", role: .cancel) { wrongUserPass = 0}
                     }
+                    
                     HStack {
                         Text("Don't have an account yet?")
                         NavigationLink( "Sign Up", destination: CreateUserView())
                     }
+                    
                     NavigationLink("", destination: PostView(), isActive: $loginSuccessful)
-                    .navigationBarHidden(true)
-
                 }
-                .navigationBarHidden(true)
-
             }
-            .navigationBarHidden(true)
-
         }
-        .navigationBarHidden(true)
-
     }
 }
 struct LoginView_Previews: PreviewProvider {

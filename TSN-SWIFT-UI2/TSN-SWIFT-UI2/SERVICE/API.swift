@@ -62,7 +62,7 @@ class API {
         
         do{
             
-            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
             let userdata = try JSONDecoder().decode(UserSession.self, from: data)
             
             let stringResponse = String(data: data, encoding: .utf8)!
@@ -92,14 +92,14 @@ class API {
             let session = try JSONDecoder().decode(UserSession.self, from: data)
             
             let stringResponse = String(data: data, encoding: .utf8)!
-            print(stringResponse)
+            print("[DEBUG][API][LOGIN] Login Successful for:",stringResponse)
             
             //VERIFICAR ESSE SAVE DO CHRISTIAN
             save(token: session.token)
             return session
         }
         catch{
-            print(error)
+            print("[DEBUG][API][LOGIN] Server Error: ",error)
         }
         return nil
     }
@@ -111,17 +111,16 @@ class API {
         
         do{
             let (data, _) = try await URLSession.shared.data(for: urlRequest)
-            print (String(data: data, encoding: .utf8) as Any)
-            // verificar se deu bom
+            //print (String(data: data, encoding: .utf8) as Any)
             let session = try JSONDecoder().decode(UserSession.self, from: data)
             let stringResponse = String(data: data, encoding: .utf8)!
-            print(stringResponse)
-            print("Logout Successful")
             
             delete(
                 service: "Apple.Developer.Academy.TSN-SWIFT-UI2",
                 account: "academy")
             
+            print("[DEBUG][API][LOGOUT] Logout Successful:",stringResponse)
+
             return session
         }
         catch{

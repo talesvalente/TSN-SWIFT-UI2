@@ -24,7 +24,8 @@
 		85CD453A28AD3251003DD747 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453928AD3251003DD747 /* PostView.swift */; };
 		85CD453D28AD33D2003DD747 /* KEYCHAIN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453C28AD33D2003DD747 /* KEYCHAIN.swift */; };
 		85CD453F28AE7EE6003DD747 /* PostViewTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD453E28AE7EE6003DD747 /* PostViewTemp.swift */; };
-		85CD454128AE850D003DD747 /* AddPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD454028AE850D003DD747 /* AddPost.swift */; };
+		85CD454128AE850D003DD747 /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD454028AE850D003DD747 /* AddPostView.swift */; };
+		85CD454328B50643003DD747 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD454228B50643003DD747 /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +66,8 @@
 		85CD453928AD3251003DD747 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		85CD453C28AD33D2003DD747 /* KEYCHAIN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEYCHAIN.swift; sourceTree = "<group>"; };
 		85CD453E28AE7EE6003DD747 /* PostViewTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewTemp.swift; sourceTree = "<group>"; };
-		85CD454028AE850D003DD747 /* AddPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPost.swift; sourceTree = "<group>"; };
+		85CD454028AE850D003DD747 /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
+		85CD454228B50643003DD747 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +180,8 @@
 				85511CBB28ABDADD00FA2E0B /* CreateUserView.swift */,
 				85CD453728AD1BEB003DD747 /* LoginView.swift */,
 				85CD453928AD3251003DD747 /* PostView.swift */,
-				85CD454028AE850D003DD747 /* AddPost.swift */,
+				85CD454028AE850D003DD747 /* AddPostView.swift */,
+				85CD454228B50643003DD747 /* SwiftUIView.swift */,
 			);
 			path = CONTENT;
 			sourceTree = "<group>";
@@ -330,7 +333,8 @@
 				85CD453828AD1BEB003DD747 /* LoginView.swift in Sources */,
 				85CD452A28AD10A2003DD747 /* API.swift in Sources */,
 				85CD453328AD1145003DD747 /* UserSessionModel.swift in Sources */,
-				85CD454128AE850D003DD747 /* AddPost.swift in Sources */,
+				85CD454328B50643003DD747 /* SwiftUIView.swift in Sources */,
+				85CD454128AE850D003DD747 /* AddPostView.swift in Sources */,
 				85CD453D28AD33D2003DD747 /* KEYCHAIN.swift in Sources */,
 				85CD452C28AD110D003DD747 /* GetUserModel.swift in Sources */,
 				85CD453A28AD3251003DD747 /* PostView.swift in Sources */,

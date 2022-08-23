@@ -45,10 +45,10 @@ struct CreateUserView: View {
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                        .alert("Usuário já existe no sistema!", isPresented: $accountExistsAlert) {
+                        .alert("User already registered!", isPresented: $accountExistsAlert) {
                             Button("OK", role: .cancel){}}
-                        .alert("Usuário cadastrado com sucesso!", isPresented: $accountCreationSucessful) {
-                            Button("Fazer Login", role: .cancel) { dismiss() }}
+                        .alert("User registration sucessful!", isPresented: $accountCreationSucessful) {
+                            Button("Sign-in Now!", role: .cancel) { dismiss() }}
                         
                     TextField("Email", text: $email)
                         .padding()

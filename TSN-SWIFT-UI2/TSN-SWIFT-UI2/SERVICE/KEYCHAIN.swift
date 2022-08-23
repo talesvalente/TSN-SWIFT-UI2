@@ -71,7 +71,7 @@ class KeychainManager{
         guard status == errSecSuccess else {
             throw KeychainError.unknown(status)
         }
-        print("Saved")
+        print("[DEBUG][KEYCHAIN][SAVE] Operation Status: Saved")
     }
     static func get(
         service: String,
@@ -87,7 +87,7 @@ class KeychainManager{
         var result: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &result)
 
-        print("Read Status: \(status)")
+        print("[DEBUG][KEYCHAIN][GET] Read Status: \(status)")
         
 
         return result as? Data
