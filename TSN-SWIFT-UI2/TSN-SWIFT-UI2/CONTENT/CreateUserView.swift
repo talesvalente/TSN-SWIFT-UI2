@@ -67,6 +67,8 @@ struct CreateUserView: View {
                             if ((await API.default.createUser(name: self.name, email: self.email, password: self.password)) == nil) {
                                 accountExistsAlert = true
                             }
+                            //TODO VALIDATION
+                            //https://betterprogramming.pub/how-to-validate-complex-passwords-in-swiftui-b982cd326912#:~:text=Validation%20Rules,-For%20this%20example&text=Password%20must%20not%20be%20empty,at%20least%20one%20uppercase%20letter.
                             else {
                                 accountCreationSucessful = true
                             }

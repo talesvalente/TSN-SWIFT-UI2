@@ -8,14 +8,15 @@
 import SwiftUI
 import Foundation
 
-struct UserView: View {
+//Essa é uma maneira correta de se fazer esse procedimetno?
+struct GetPostUserName: View {
     
     @State var user: User?
     
     let userID: String
     
     var body: some View {
-        Text("\(user?.name ?? "Nil")")
+        Text("Criado por: \n\(user?.name ?? "Nil")")
             .bold()
             .task {
                 self.user = await API.default.getUserByID(id: userID)
@@ -42,19 +43,11 @@ struct PostView: View {
             List {
                 ForEach(posts) { post in
                     VStack {
-                        
-                        Text(post.id)
-                        Text(post.content)
-                        Text(post.user_id)
-                        Text(post.created_at)
-                        Text(post.updated_at)
-                        UserView(userID: post.user_id)
+                        Text("Post: \(post.content)\n")
+                        Text("Data de Criação: \n\(post.created_at)\n")
+                        Text("Data de Atualização: \n\(post.updated_at)\n")
+                        GetPostUserName(userID: post.user_id)
                     }
-                   //POST TEM USER_ID
-                    //COMO CHAMAR A FUNCÃO PARA PEGAR O USERNAME COM O USER_ID
-                    //PODE PEGAR O USERNAME SÓ COM USER_ID (SEM TOKEN) ?
-                    
-                    
                 }
             }
             
