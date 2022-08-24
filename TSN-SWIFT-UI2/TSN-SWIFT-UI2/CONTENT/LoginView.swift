@@ -51,7 +51,7 @@ struct LoginView: View {
                         .cornerRadius(10)
                         .border(.red, width: CGFloat(wrongUserPass))
                     
-                    Button("Login") {
+                    Button(action: {
                         Task {
                             let createUserResults = await API.default.login(email: self.email, password: self.password)
                             if (createUserResults != nil) {
@@ -62,12 +62,31 @@ struct LoginView: View {
                                 showingAlert = true
                             }
                         }
+                    }) {
+                        Text("Login")
+                            .frame(width: 300, height: 50)
+                            .foregroundColor(.white)
+                            .background(Color.red)
+                            .cornerRadius(10)
                     }
                     
-                    .foregroundColor(.white)
-                    .frame(width: 300, height: 50)
-                    .background(Color.red)
-                    .cornerRadius(10)
+//                    Button("Login") {
+//                        Task {
+//                            let createUserResults = await API.default.login(email: self.email, password: self.password)
+//                            if (createUserResults != nil) {
+//                                loginSuccessful = true
+//                            }
+//                            else {
+//                                wrongUserPass = 2;
+//                                showingAlert = true
+//                            }
+//                        }
+//                    }
+//
+//                    .foregroundColor(.white)
+//                    .frame(width: 300, height: 50)
+//                    .background(Color.red)
+//                    .cornerRadius(10)
                 
                     //Remover barra superior
                     .navigationBarHidden(true)

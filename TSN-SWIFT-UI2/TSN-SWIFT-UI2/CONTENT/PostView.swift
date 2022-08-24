@@ -8,6 +8,22 @@
 import SwiftUI
 import Foundation
 
+struct UserView: View {
+    
+    @State var user: User?
+    
+    let userID: String
+    
+    var body: some View {
+        Text("\(user?.name ?? "Nil")")
+            .bold()
+            .task {
+                self.user = await API.default.getUserByID(id: userID)
+            }
+    }
+    
+}
+
 
 struct PostView: View {
     @Environment(\.dismiss) var dismiss
@@ -15,25 +31,30 @@ struct PostView: View {
     @State var posts: [Post] = []
     @State var token: String?
     @State var displayAddPostView = false
-    
-    
+    @State var userName: String?
     
     var body: some View {
         
-        Text("Logged as: $USERNAME")
-        
+        Text("Logged as: \(userName ?? "None")")
         .navigationBarHidden(true)
-        
-        //Text(token ?? "[ERROR] TOKEN NOTE FOUND")
-        //Text(token ?? "[ERROR] TOKEN NOTE FOUND")]
 
         NavigationView {
             List {
                 ForEach(posts) { post in
                     VStack {
+                        
+                        Text(post.id)
                         Text(post.content)
-                        .bold()
+                        Text(post.user_id)
+                        Text(post.created_at)
+                        Text(post.updated_at)
+                        UserView(userID: post.user_id)
                     }
+                   //POST TEM USER_ID
+                    //COMO CHAMAR A FUNCÃO PARA PEGAR O USERNAME COM O USER_ID
+                    //PODE PEGAR O USERNAME SÓ COM USER_ID (SEM TOKEN) ?
+                    
+                    
                 }
             }
             
@@ -44,7 +65,15 @@ struct PostView: View {
                     navigationBarLink
                 }
             }
-            .sheet(isPresented: $displayAddPostView){
+            
+            .sheet(
+                isPresented: $displayAddPostView,
+                onDismiss: {
+                    Task {
+                        posts = await API.default.getAllPosts()
+                    }
+                }
+            ){
                 AddPostView(isPresented: $displayAddPostView)
             }
         }
@@ -52,7 +81,9 @@ struct PostView: View {
         .navigationViewStyle(.stack)
 
         .task {
-            posts = await API.default.getAllPosts()
+            posts    = await API.default.getAllPosts()
+
+            userName = await API.default.getUserByToken(token: self.token!)?.name
         }
         
         Button("Logout") {
@@ -91,3 +122,15 @@ struct PostView_Previews: PreviewProvider {
         PostView()
     }
 }
+
+
+//VERIFICAR API FUNCAO DE PEGAR USARIO PELO ID E IDENTIFICAR O NOME
+//http://127.0.0.1:8080/users/
+//LEMBRAR QUE EXISTE USUARIO VAZIO
+// VERIFICA SE userName é optional ou nao
+//        if let userName = userName {
+//            Text("Logged as: \(userName)")
+//        }
+//
+//let user = await API.default.getUserByToken(token: self.token!)
+//userName = user?.name

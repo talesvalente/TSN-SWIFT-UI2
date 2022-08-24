@@ -7,6 +7,14 @@
 
 import SwiftUI
 import Foundation
+//
+//  Header.swift
+//  LaraNotes
+//
+//  Created by Christian Paulo on 12/05/22.
+//
+
+import SwiftUI
 
 struct AddPostView: View {
     @State var token: String?
@@ -15,94 +23,56 @@ struct AddPostView: View {
 
     @State var title : String = ""
     @State var value : Double = 0.0
-
+    
     @State private var buy = Date()
     
     var body: some View {
-        
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct AddPostView_Previews: PreviewProvider {
-    static var previews: some View {
-        SwiftUIView()
-    }
-}
-
-/*
-struct AddPostView: View {
-    //@EnvironmentObject var viewModel: ViewModel
-    @Binding var isPresented: Bool
-    @Binding var content: String
-    @State var isAlert = false
-    
-    
-    var body: some View {
         NavigationView {
-            ZStack {
-                Color.gray.opacity(0.1).edgesIgnoringSafeArea(.all)
-                VStack(alignment:.leading) {
-                    Text("Create new Post")
-                        .font(Font.system(size: 16, weight: .bold))
-                    
-                    //   TextField ("Title", text: $title)
-                    //                        .padding()
-                    //                        .background(Color.white)
-                    //                        .cornerRadius(6)
-                    //                        .padding(.bottom)
-                    
-                    TextField ("Write Something", text: $content)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(6)
-                        .padding(.bottom)
-                    
-                    Spacer()
-                    
-                }.padding()
-                    .alert(isPresented: $isAlert, content: {
-                        let title = Text("No data")
-                        let message = Text("please fill you post")
-                        return Alert(title: title, message: message)
-                    })
+            VStack {
+                Form {
+                    Section("Título"){
+                        TextField("Adicionar titulo", text: $title)
+                    }
+                }
+                .listStyle(.insetGrouped)
+                .padding(.top, -20)
             }
-            .navigationBarTitle("New Post", displayMode: .inline )
-            .navigationBarItems(leading: leading, trailing: trailing)
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack {
+                        Spacer()
+                        Button {
+                            isPresented = false
+                            Task {
+                                await (API.default.createPost(content: self.title, token: self.token ?? "")) //VERIFICAR ESSAS ASPAS
+                            }
+                        } label: {
+                            Text("Salvar")
+                                .font(.system(.body, design: .rounded).weight(.medium))
+                        }
+                        
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        Button {
+                            isPresented = false
+                        } label: {
+                            Text("Cancelar")
+                                .font(.system(.body, design: .rounded).weight(.medium))
+                        }
+                        
+                    }
+                }
+            }
+            .navigationTitle("Novo Post")
+            .navigationBarTitleDisplayMode(.inline)
+            
+            
+        }
+        .onAppear {
+            token = getPassword()
         }
     }
-    
-    var leading: some View{
-        Button(action: {
-            isPresented.toggle()
-        }, label: {
-            Text("Cancel")
-        })
-    }
-    
-    var trailing: some View{
-        Button(action: {
-            if /*title != "" &&*/ content != "" {
-                let parameters: [String: Any] = [/*"title": title*/ "content": content]
-                API.default.createPost(parameters: parameters)
-                
-                API.default.fetchPosts()
-                
-                
-                isPresented.toggle()
-            } else {
-                isAlert.toggle()
-            }
-            
-        }, label: {
-            Text("Post")
-        })
-    }
+        
 }
-
-//struct NewPostView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NewPostView()
-//    }
-//}
-*/

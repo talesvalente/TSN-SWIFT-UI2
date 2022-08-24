@@ -140,7 +140,7 @@ class API {
                 let (data, _) = try await URLSession.shared.data(for: urlRequest)
                 
                 let stringResponse = String(data: data, encoding: .utf8)!
-                print(stringResponse)
+                print("[DEBUG][API][CREATEPOST] Content Created:",stringResponse)
                 
                 let userdata = try JSONDecoder().decode(Post.self, from: data)
                 
@@ -151,4 +151,38 @@ class API {
             }
             return nil
     }
+    
+    func getUserByID(id: String) async -> User? {
+        var urlRequest = URLRequest(url: URL(string: serverPath+"users/\(id)")!)
+        urlRequest.httpMethod = "GET"
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            let user = try JSONDecoder().decode(User.self, from: data)
+
+            return user
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    func getUserByToken(token: String) async -> User?{
+        var urlRequest = URLRequest(url: URL(string: serverPath+"users/me")!)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        do{
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            let userData = try JSONDecoder().decode(User.self, from: data)
+
+
+            return userData
+        }
+        catch{
+            print("\n[DEBUG] ERROR IN FUNCTION getUserByToken. SOMETHING GOES WRONG!\n", error)
+        }
+        return nil
+    }
+    
+    
 }

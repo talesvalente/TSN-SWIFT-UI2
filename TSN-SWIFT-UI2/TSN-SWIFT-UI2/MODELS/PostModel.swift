@@ -1,8 +1,9 @@
 import Foundation
 
-struct User: Codable{
-    let id: UUID
-    let name: String
-    let email: String
-    let avatar: String?
+struct Post: Decodable, Identifiable {
+    let id: String
+    let content: String
+    let user_id: String
+    let created_at: String
+    let updated_at: String
 }
