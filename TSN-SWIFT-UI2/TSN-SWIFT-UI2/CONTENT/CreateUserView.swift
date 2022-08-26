@@ -8,6 +8,10 @@
 import SwiftUI
 import Foundation
 
+//TODO MATRICULA/REGISTRY can not be empty
+//TODO MATRICULA/REGISTRY MUST BE ONLY NUMBERS
+//TODO the password cannot contain the username
+
 
 struct CreateUserView: View {
     

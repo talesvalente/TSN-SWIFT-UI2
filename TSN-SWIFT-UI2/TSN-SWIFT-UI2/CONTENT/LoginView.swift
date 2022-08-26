@@ -78,7 +78,7 @@ struct LoginView: View {
                     //Usuário Incorreto ou Senha Incorreta
                     //TIP: API DOENST SUPPORT UserLogin or UserPass check
                     .alert("Usuário ou Senha Incorreta", isPresented: $showingAlert) {
-                        Button("Tentar novamente!", role: .cancel) { wrongUserPass = 0}
+                        Button("Tente novamente!", role: .cancel) { wrongUserPass = 0}
                     }
                     
                     HStack {
