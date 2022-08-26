@@ -13,7 +13,7 @@ struct CreateUserView: View {
     
     //Design Patter @State
     @State private var name = ""
-    @State private var email = ""
+    @State private var registry = ""
     @State private var password = ""
     @State private var accountExistsAlert = false
     @State private var accountCreationSucessful = false
@@ -22,6 +22,8 @@ struct CreateUserView: View {
     @State private var isPasswordVisible: Bool = false
     
     
+    @State private var showRedAlert = 0
+
     init() {
         UITableView.appearance().sectionFooterHeight = 0
     }
@@ -31,64 +33,35 @@ struct CreateUserView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.green.ignoresSafeArea()
-                Circle()
-                    .scale(1.7)
-                    .foregroundColor(.white.opacity(0.15))
-                
-                Circle()
-                    .scale(1.35)
-                    .foregroundColor(.white)
                 VStack {
-                    Text("The Social Network")
+                    Text("AVISOS - IFCE")
                         .font(.largeTitle)
                         .bold()
-                        .padding()
+                    Text("Cadastro de Usuários")
                     
-                    Text("Registration Screen")
-                    
-//                    TextField("Name", text: $name)
-//                        .padding()
-//                        .frame(width: 300, height: 50)
-//                        .background(Color.black.opacity(0.05))
-//                        .cornerRadius(10)
-//                        .alert("User already registered!", isPresented: $accountExistsAlert) {
-//                            Button("OK", role: .cancel){}}
-//                        .alert("User registration sucessful!", isPresented: $accountCreationSucessful) {
-//                            Button("Sign-in Now!", role: .cancel) { dismiss() }}
-//
-//                    TextField("Email", text: $email)
-//                        .padding()
-//                        .frame(width: 300, height: 50)
-//                        .background(Color.black.opacity(0.05))
-//                        .cornerRadius(10)
+                
                     Form() {
-                        
-                        Section(header: Text("Inform your name").font(.caption)) {
+
+                        Section(header: Text("Informe seu nome").font(.caption)) {
                             HStack {
-                                TextField("Name", text: $name)
-                                .alert("User already registered!", isPresented: $accountExistsAlert) {
-                                    Button("OK", role: .cancel){}}
-                                .alert("User registration sucessful!", isPresented: $accountCreationSucessful) {
-                                    Button("Sign-in Now!", role: .cancel) { dismiss() }}
-                            }
-                        }
-                        Section(header: Text("Inform your email").font(.caption)) {
-                            HStack {
-                                TextField("Email", text: $email)
-                                .alert("User already registered!", isPresented: $accountExistsAlert) {
-                                    Button("OK", role: .cancel){}}
-                                .alert("User registration sucessful!", isPresented: $accountCreationSucessful) {
-                                    Button("Sign-in Now!", role: .cancel) { dismiss() }}
+                                TextField("Nome", text: $name)
                             }
                         }
                         
-                        Section(header: Text("Create your password").font(.caption)) {
+                        Section(header: Text("Informe sua Matrícula").font(.caption)) {
+                            HStack {
+                                TextField("Matrícula", text: $registry)
+                            }
+                            .border(.red, width: CGFloat(showRedAlert))
+
+                        }
+
+                        Section(header: Text("Crie sua senha").font(.caption)) {
                             HStack {
                                 if isPasswordVisible {
-                                    TextField("Password", text: $userViewModel.password)
+                                    TextField("Senha", text: $userViewModel.password)
                                 } else {
-                                    SecureField("Password", text: $userViewModel.password)
+                                    SecureField("Senha", text: $userViewModel.password)
                                 }
                                 
                                 Spacer().frame(width: 10)
@@ -115,62 +88,50 @@ struct CreateUserView: View {
                         }
                         
                         Section {
-                            Button(action: {
-                                // Action...
-                            }){
+                            Button(action: { Task {
+                                if ((await API.default.createUser(name: self.name, registry: self.registry, password: self.password)) == nil) {
+                                    accountExistsAlert = true
+                                    showRedAlert = 2
+                                }
+                                else {
+                                    accountCreationSucessful = true
+                                }
+                            }}){
                                 HStack(alignment: .center) {
                                     Spacer()
                                     Image(systemName: userViewModel.isValid ? "lock.open.fill" : "lock.fill")
-                                    Text("Create")
+                                    Text("Criar Usuário")
                                     Spacer()
                                 }
                             }
-                            .disabled(!userViewModel.isValid)
-                            .animation(.default)
-                        }
+                        }//TIPOGRAFIA RIG
+                        .disabled(!userViewModel.isValid)
+                        .animation(.default)
+                       
+                            
                     }
-                    .listStyle(GroupedListStyle())
                 
+                    .listStyle(GroupedListStyle())
                     
-//                    SecureField("Password", text: $password)
-//                        .padding()
-//                        .frame(width: 300, height: 50)
-//                        .background(Color.black.opacity(0.05))
-//                        .cornerRadius(10)
+                    .alert("Usário já registrado!", isPresented: $accountExistsAlert) {
+                        Button("Tentar Novamente", role: .cancel){ showRedAlert = 0}}
                     
-//                    Button("Create User") {
-//                        Task {
-//                            if ((await API.default.createUser(name: self.name, email: self.email, password: self.password)) == nil) {
-//                                accountExistsAlert = true
-//                            }
-//                            //TODO VALIDATION
-//                            //https://betterprogramming.pub/how-to-validate-complex-passwords-in-swiftui-b982cd326912#:~:text=Validation%20Rules,-For%20this%20example&text=Password%20must%20not%20be%20empty,at%20least%20one%20uppercase%20letter.
-//                            else {
-//                                accountCreationSucessful = true
-//                            }
-//                        }
-//                    }
-//                    .foregroundColor(.white)
-//                    .frame(width: 300, height: 50)
-//                    .background(Color.red)
-//                    .cornerRadius(10)
-//                    .navigationBarHidden(true)
+                    .alert("Usuário Registrado com sucesso!", isPresented: $accountCreationSucessful) {
+                        Button("Fazer log-in!", role: .cancel) { dismiss() }}
+                    
 
                     HStack {
-                        Text("Do you have a account?")
-                        Button("Sign In") {
+                        Text("Você já tem uma conta?")
+                        Button("Fazer login") {
                             dismiss()
                         }
                     }
                     
-                    .navigationBarHidden(true)
                 }
-                .navigationBarHidden(true)
-            }
+            }// END OF V STACK
             .navigationBarHidden(true)
-        }
+        } //END OF Z STACK
         .navigationBarHidden(true)
-
     }
 
 }

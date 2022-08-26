@@ -51,12 +51,12 @@ class API {
         return []
     }
     
-    func createUser(name: String, email: String,password: String) async -> UserSession?{
+    func createUser(name: String, registry: String,password: String) async -> UserSession?{
         var urlRequest = URLRequest(url: URL(string: serverPath+"users")!)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let body: [String:Any] = ["name": name, "email": email, "password": password]
+        //EMAIL AGORA É REGISTRY
+        let body: [String:Any] = ["name": name, "email": registry, "password": password]
         
         urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
@@ -76,9 +76,9 @@ class API {
     }
 
     
-    func login(email:String, password:String) async -> UserSession? {
+    func login(registry:String, password:String) async -> UserSession? {
         
-        let login: String = "\(email):\(password)"
+        let login: String = "\(registry):\(password)"
         let logindata = login.data(using: String.Encoding.utf8)!
         let base64 = logindata.base64EncodedString()
         

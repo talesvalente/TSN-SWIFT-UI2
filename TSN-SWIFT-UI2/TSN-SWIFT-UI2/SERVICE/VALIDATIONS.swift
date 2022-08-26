@@ -108,15 +108,15 @@ enum ValidationType {
     func message(fieldName: String) -> String {
         switch self {
         case .isNotEmpty:
-            return "\(fieldName) must not be empty"
+            return "Não pode ser vazia"
         case .minCharacters(min: let min):
-            return "\(fieldName) must be longer than \(min) characters"
+            return "Precisa ser maior que \(min) caracteres"
         case .hasSymbols:
-            return "\(fieldName) must have a symbol"
+            return "Deve ter ao menos 1 caracter especial"
         case .hasUppercasedLetters:
-            return "\(fieldName) must have an uppercase letter"
+            return "Deve ter ao menos 1 letra maíuscula"
         case .hasNumbers:
-            return "\(fieldName) must have an number"
+            return "Deve ter ao menos 1 número"
         }
     }
 }
@@ -157,3 +157,5 @@ extension String {
         return true
     }
 }
+
+//COMBINE

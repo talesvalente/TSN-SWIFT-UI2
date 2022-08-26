@@ -12,7 +12,7 @@ import Foundation
 struct LoginView: View {
     
     @State private var wrongUserPass = 0
-    @State private var email = ""
+    @State private var registry = "" //MATRICULA
     @State private var password = ""
     @State private var showingAlert = false
     @State private var loginSuccessful = false
@@ -31,21 +31,21 @@ struct LoginView: View {
                     .foregroundColor(.white)
                 
                 VStack {
-                    Text("The Social Network")
+                    Text("AVISOS - IFCE")
                         .font(.largeTitle)
                         .bold()
-                        .padding()
+                        //.padding()
                     
-                    Text("Login Screen")
+                    Text("Login - Campus Maracanaú")
                      
-                    TextField("Email", text: $email)
+                    TextField("Matricula", text: $registry)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                         .border(.red, width: CGFloat(wrongUserPass))
                     
-                    SecureField("Password", text: $password)
+                    SecureField("Senha", text: $password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
@@ -54,7 +54,7 @@ struct LoginView: View {
                     
                     Button(action: {
                         Task {
-                            let createUserResults = await API.default.login(email: self.email, password: self.password)
+                            let createUserResults = await API.default.login(registry: self.registry, password: self.password)
                             if (createUserResults != nil) {
                                 loginSuccessful = true
                             }
@@ -71,37 +71,19 @@ struct LoginView: View {
                             .cornerRadius(10)
                     }
                     
-//                    Button("Login") {
-//                        Task {
-//                            let createUserResults = await API.default.login(email: self.email, password: self.password)
-//                            if (createUserResults != nil) {
-//                                loginSuccessful = true
-//                            }
-//                            else {
-//                                wrongUserPass = 2;
-//                                showingAlert = true
-//                            }
-//                        }
-//                    }
-//
-//                    .foregroundColor(.white)
-//                    .frame(width: 300, height: 50)
-//                    .background(Color.red)
-//                    .cornerRadius(10)
-                
-                    //Remover barra superior
+
                     .navigationBarHidden(true)
                     
                     //Mostrar um alerta em caso de:
                     //Usuário Incorreto ou Senha Incorreta
                     //TIP: API DOENST SUPPORT UserLogin or UserPass check
-                    .alert("User or Password incorret.", isPresented: $showingAlert) {
-                        Button("Try Again", role: .cancel) { wrongUserPass = 0}
+                    .alert("Usuário ou Senha Incorreta", isPresented: $showingAlert) {
+                        Button("Tentar novamente!", role: .cancel) { wrongUserPass = 0}
                     }
                     
                     HStack {
-                        Text("Don't have an account yet?")
-                        NavigationLink( "Sign Up", destination: CreateUserView())
+                        Text("Ainda não tem uma conta?")
+                        NavigationLink( "Cadastre-se", destination: CreateUserView())
                     }
                     
                     NavigationLink("", destination: PostView(), isActive: $loginSuccessful)
